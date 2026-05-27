@@ -38,7 +38,7 @@ public class LoginSc {
             if (username.equals(validUsername) && 
                 password.equals(validPassword)) {
 
-                
+                stage.setScene(MenuSc.createScene(stage));
             }
 
             // Username atau Password salah
