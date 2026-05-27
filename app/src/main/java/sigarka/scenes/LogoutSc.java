@@ -40,10 +40,10 @@ public class LogoutSc {
         // ===== ACTION =====
         layoutLogout.setVisible(false);
         btnNo.setOnAction(e ->
-                layoutLogout.setVisible(false)
-        );
+                layoutLogout.setVisible(false));
 
-        btnYes.setOnAction(e -> {});
+        btnYes.setOnAction(e -> 
+                stage.setScene(LoginSc.createScene(stage)));
 
 
         return layoutLogout;
