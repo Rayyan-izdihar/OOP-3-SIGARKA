@@ -18,7 +18,9 @@ public class MenuSc {
 
         // ===== ACTION =====
 
-        btnLogout.setOnAction(e -> {} );
+        VBox layoutLogout = LogoutSc.createScene(stage);
+        btnLogout.setOnAction(e ->  {
+                layoutLogout.setVisible(true); });
 
 
         // ===== CARD =====
@@ -35,7 +37,10 @@ public class MenuSc {
         StackPane root = new StackPane();
 
 
-        root.getChildren().add(card);
+        root.getChildren().addAll(
+                card,
+                layoutLogout
+        );
 
         return new Scene(root, 900, 600);
     }
