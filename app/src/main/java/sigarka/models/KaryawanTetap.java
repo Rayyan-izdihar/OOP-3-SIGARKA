@@ -57,16 +57,14 @@ public class KaryawanTetap extends Karyawan {
 
         double potongan = (alpa * 150000) + (izin * 75000); 
         
-        double bonusLembur = lembur * 100000; 
-
         double bonus = 0;
 
         if (lembur >= 5) {
-            bonus += bonusLembur; 
+            bonus += lembur * 100000; 
         }
 
         if (alpa == 0 && izin == 0) {
-            bonus += gajiPokok; 
+            bonus += 500000; 
         }
 
         double tunjanganKesehatan = 300000;
