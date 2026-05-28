@@ -5,6 +5,7 @@ import javafx.stage.Stage;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import java.util.Optional;
+import sigarka.View.AppStyle;
 
 public class LogoutSc {
         
@@ -36,8 +37,8 @@ public class LogoutSc {
                         Button btnYesNode = (Button) alert.getDialogPane().lookupButton(btnYes);
                         Button btnNoNode = (Button) alert.getDialogPane().lookupButton(btnNo);
 
-                        btnYesNode.setStyle("-fx-background-color: #ef4444; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;"); 
-                        btnNoNode.setStyle("-fx-background-color: #22c55e; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;");
+                        btnYesNode.setStyle("-fx-background-color:" + AppStyle.BLUE_COLOR + "; -fx-text-fill: white; -fx-cursor: hand;"); 
+                        btnNoNode.setStyle("-fx-background-color: " + AppStyle.LIGHTGREEN_COLOR + "; -fx-text-fill: " + AppStyle.NOTSOBLACK_COLOR + "; -fx-cursor: hand;");
 
                         Optional<ButtonType> result = alert.showAndWait();
 
