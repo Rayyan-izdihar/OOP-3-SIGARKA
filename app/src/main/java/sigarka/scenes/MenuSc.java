@@ -10,18 +10,8 @@ public class MenuSc {
 
     public static Scene createScene(Stage stage) {
 
-
-        // ===== BUTTON =====
-        
-        Button btnLogout = new Button("Logout");
-
-
-        // ===== ACTION =====
-
-        VBox layoutLogout = LogoutSc.createScene(stage);
-        btnLogout.setOnAction(e ->  {
-                layoutLogout.setVisible(true); });
-
+        // ===== BUTTON LOGOUT =====
+        Button btnLogout = LogoutSc.createLogoutButton(stage);
 
         // ===== CARD =====
         VBox card = new VBox(18);
@@ -38,8 +28,7 @@ public class MenuSc {
 
 
         root.getChildren().addAll(
-                card,
-                layoutLogout
+                card
         );
 
         return new Scene(root, 900, 600);

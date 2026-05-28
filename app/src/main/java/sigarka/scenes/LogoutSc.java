@@ -8,7 +8,13 @@ import javafx.stage.Stage;
 
 public class LogoutSc {
     
-    public static VBox createScene(Stage stage) {
+    public static Button createLogoutButton(Stage stage) {
+
+        // ===== BUTTON =====
+        
+        Button btnLogout = new Button("Logout");
+
+
         
         // ===== LABEL TANYA =====
         Label labelTanya = new Label("Yakin ingin logout?");
@@ -46,6 +52,6 @@ public class LogoutSc {
                 stage.setScene(LoginSc.createScene(stage)));
 
 
-        return layoutLogout;
+        return btnLogout;
     }
 }
