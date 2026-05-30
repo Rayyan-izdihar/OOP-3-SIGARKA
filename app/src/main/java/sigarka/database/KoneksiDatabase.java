@@ -39,6 +39,21 @@ public class KoneksiDatabase {
                          "gaji_pokok REAL, " +
                          "tarif_per_jam REAL" +
                          ");");
+            
+            // Tabel Riwayat Gaji
+            stmt.execute("CREATE TABLE IF NOT EXISTS riwayat_gaji (" +
+                         "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                         "karyawan_id TEXT, " +
+                         "periode TEXT, " +
+                         "tunjangan_kesehatan REAL, " +
+                         "bonus_badge REAL, " +
+                         "izin INTEGER, " +
+                         "alfa INTEGER, " +
+                         "lembur INTEGER, " +
+                         "jam_kerja INTEGER, " +
+                         "gaji_bersih REAL, " +
+                         "FOREIGN KEY(karyawan_id) REFERENCES karyawan(id)" +
+                         ");");
         } catch (SQLException e) {
             System.err.println("Gagal membuat tabel: " + e.getMessage());
         }
