@@ -32,49 +32,26 @@ public class KaryawanTetap extends Karyawan {
 
     @Override
     public double hitungGaji() {
-        double gajiPokok = 0;
-
-        if (getDivisi().equals("Bisnis Global dan Pemasaran")){
-
-            if (getJabatan().equals("Manager")){
-                gajiPokok = 7000000;
-            } else {
-                gajiPokok = 6000000;
-            }
-        }
-
-        if (getDivisi().equals("Produksi Kreatif")){
-
-            if (getJabatan().equals("Manager")){
-                gajiPokok = 6500000;
-            } else {
-                gajiPokok = 5500000;
-            }
-        }
-
-        if (getDivisi().equals("AR")){
-
-            if (getJabatan().equals("Manager")){
-                gajiPokok = 7500000;
-            } else {
-                gajiPokok = 6500000;
+        double gajiPokok = this.gajiPokok;
+        
+        // Jika gajiPokok belum diset (misal 0), gunakan logika lama sebagai fallback
+        if (gajiPokok <= 0) {
+            if (getDivisi().equals("Bisnis Global dan Pemasaran")){
+                gajiPokok = getJabatan().equals("Manager") ? 7000000 : 6000000;
+            } else if (getDivisi().equals("Produksi Kreatif")){
+                gajiPokok = getJabatan().equals("Manager") ? 6500000 : 5500000;
+            } else if (getDivisi().equals("Artist & Repertoire")){
+                gajiPokok = getJabatan().equals("Manager") ? 7500000 : 6500000;
             }
         }
 
         double potongan = (alfa * 150000) + (izin * 75000); 
-        
         double bonus = 0;
-
-        if (lembur >= 5) {
-            bonus += lembur * 100000; 
-        }
-
-        if (alfa == 0 && izin == 0) {
-            bonus += 500000; 
-        }
+        if (lembur >= 5) bonus += 150000;
+        if (alfa == 0 && izin == 0) bonus += 100000;
 
         double tunjanganKesehatan = 300000;
 
-        return gajiPokok - potongan + bonus + tunjanganKesehatan;
+        return gajiPokok - potongan + bonus + (lembur * 100000) + tunjanganKesehatan;
     }
 }

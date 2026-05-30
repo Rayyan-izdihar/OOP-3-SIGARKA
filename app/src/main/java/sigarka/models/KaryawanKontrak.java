@@ -14,11 +14,9 @@ public class KaryawanKontrak extends Karyawan {
         return tarifPerJam;
     }
 
-    
     @Override
     public double hitungGaji() {
-        double gajiPerJam = 30000;
-
-        return jamKerja * gajiPerJam; 
+        double tarif = this.tarifPerJam > 0 ? this.tarifPerJam : 30000;
+        return jamKerja * tarif; 
     }
 }
