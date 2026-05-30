@@ -12,10 +12,12 @@ public class MenuSc {
 
         // ===== BUTTON LOGOUT =====
         Button btnKelola = new Button("Kelola Data Karyawan");
+        Button btnHitung = new Button("Hitung Gaji Karyawan");
         Button btnLogout = LogoutSc.createLogoutButton(stage);
 
           // ===== SET ACTION =====
         btnKelola.setOnAction(e -> stage.setScene(sigarka.scenes.karyawan.KelolaKaryawanSc.createScene(stage)));
+        btnHitung.setOnAction(e -> stage.setScene(sigarka.scenes.hitung.HitungGajiSc.createScene(stage)));
 
         // ===== CARD =====
         VBox card = new VBox(18);
@@ -23,6 +25,7 @@ public class MenuSc {
 
         card.getChildren().addAll(
             btnKelola,
+            btnHitung,
             btnLogout
         );
 
