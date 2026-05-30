@@ -11,7 +11,7 @@ public class MenuSc {
     public static Scene createScene(Stage stage) {
 
         // ===== BUTTON LOGOUT =====
-           Button btnKelola = new Button("Kelola Data Karyawan");
+        Button btnKelola = new Button("Kelola Data Karyawan");
         Button btnLogout = LogoutSc.createLogoutButton(stage);
 
           // ===== SET ACTION =====
@@ -22,8 +22,8 @@ public class MenuSc {
 
 
         card.getChildren().addAll(
-                btnKelola,
-                btnLogout
+            btnKelola,
+            btnLogout
         );
 
         
@@ -32,7 +32,7 @@ public class MenuSc {
 
 
         root.getChildren().addAll(
-                card
+            card
         );
 
         return new Scene(root, 900, 600);
