@@ -92,4 +92,17 @@ public class KaryawanRepo {
         }
         return list;
     }
+
+    // ===== MENGAMBIL GAJI (K.TETAP) =====
+    public double getGajiPokok(String id) {
+        String sql = "SELECT gaji_pokok FROM karyawan WHERE id = ?";
+        try (Connection conn = KoneksiDatabase.sambung();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, id);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) return rs.getDouble("gaji_pokok");
+            }
+        } catch (SQLException e) { e.printStackTrace(); }
+        return 0;
+    }
 }
