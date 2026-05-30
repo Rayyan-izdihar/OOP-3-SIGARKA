@@ -2,9 +2,16 @@ package sigarka.repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import sigarka.database.KoneksiDatabase;
+import sigarka.models.Karyawan;
+import sigarka.models.KaryawanKontrak;
+import sigarka.models.KaryawanTetap;
 
 // ===== PERINTAH SQL QUERY =====
 public class KaryawanRepo {
@@ -49,5 +56,40 @@ public class KaryawanRepo {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    // ===== MENGAMBIL DATA KARYAWAN =====
+    public List<Karyawan> ambilSemua() {
+        List<Karyawan> list = new ArrayList<>();
+        String sql = "SELECT * FROM karyawan";
+        try (Connection conn = KoneksiDatabase.sambung();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                String tipe = rs.getString("tipe");
+                if ("Karyawan Tetap".equals(tipe)) {
+                    list.add(new KaryawanTetap(
+                        rs.getString("nama"),
+                        rs.getString("id"),
+                        tipe,
+                        rs.getString("divisi"),
+                        rs.getString("jabatan"),
+                        0, 0, 0,
+                        rs.getDouble("gaji_pokok")
+                    ));
+                } else {
+                    list.add(new KaryawanKontrak(
+                        rs.getString("nama"),
+                        rs.getString("id"),
+                        tipe,
+                        0,
+                        rs.getDouble("tarif_per_jam")
+                    ));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 }
