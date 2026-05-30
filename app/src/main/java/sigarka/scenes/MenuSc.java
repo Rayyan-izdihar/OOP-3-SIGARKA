@@ -11,14 +11,18 @@ public class MenuSc {
     public static Scene createScene(Stage stage) {
 
         // ===== BUTTON LOGOUT =====
+           Button btnKelola = new Button("Kelola Data Karyawan");
         Button btnLogout = LogoutSc.createLogoutButton(stage);
+
+          // ===== SET ACTION =====
+        btnKelola.setOnAction(e -> stage.setScene(sigarka.scenes.karyawan.KelolaKaryawanSc.createScene(stage)));
 
         // ===== CARD =====
         VBox card = new VBox(18);
 
 
         card.getChildren().addAll(
-                
+                btnKelola,
                 btnLogout
         );
 
