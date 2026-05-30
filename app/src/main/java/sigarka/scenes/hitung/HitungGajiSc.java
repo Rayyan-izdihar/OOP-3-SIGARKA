@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import sigarka.models.Karyawan;
+import sigarka.models.KaryawanTetap;
 import sigarka.repository.GajiRepo;
 import sigarka.repository.KaryawanRepo;
 
@@ -41,9 +42,28 @@ public class HitungGajiSc {
         TextField periode = new TextField();
         periode.setPromptText("Periode (Contoh: 29 Mei)");
 
-
         VBox formContainer = new VBox(10);
         Button btnHitung = new Button("Hitung dan Simpan");
+
+
+        cbKaryawan.setOnAction(e -> {
+            formContainer.getChildren().clear();
+            int idx = cbKaryawan.getSelectionModel().getSelectedIndex();
+            if (idx < 0) return;
+
+            Karyawan k = daftarKaryawan.get(idx);
+            if (k instanceof KaryawanTetap) {
+                formContainer.getChildren().addAll(
+                    new Label("Jumlah Izin:"), new TextField("0"),
+                    new Label("Jumlah Alfa:"), new TextField("0"),
+                    new Label("Jumlah Hari Lembur:"), new TextField("0")
+                );
+            } else {
+                formContainer.getChildren().addAll(
+                    new Label("Total Jam Kerja 1 Bulan:"), new TextField("0")
+                );
+            }
+        });
 
 
         Button btnKembali = new Button("Kembali");
