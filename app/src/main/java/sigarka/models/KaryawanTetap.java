@@ -1,19 +1,21 @@
 package sigarka.models;
 
 public class KaryawanTetap extends Karyawan {
-    private int alpa;
+    private int alfa;
     private int izin;
     private int lembur;
     private String divisi;
     private String jabatan;
+    private double gajiPokok;
 
-    public KaryawanTetap(String nama, String id, String tipe, String divisi, String jabatan, int alpa, int izin, int lembur) {
+    public KaryawanTetap(String nama, String id, String tipe, String divisi, String jabatan, int alfa, int izin, int lembur, double gajiPokok) {
         super(nama, id, tipe);
         this.divisi = divisi;
         this.jabatan = jabatan;
-        this.alpa = alpa;
+        this.alfa = alfa;
         this.izin = izin;
         this.lembur = lembur;
+        this.gajiPokok = gajiPokok;
     }
 
     public String getDivisi() {
@@ -22,6 +24,10 @@ public class KaryawanTetap extends Karyawan {
 
     public String getJabatan() {
         return jabatan;
+    }
+
+     public double getGajiPokok() {
+        return gajiPokok;
     }
 
     @Override
@@ -55,7 +61,7 @@ public class KaryawanTetap extends Karyawan {
             }
         }
 
-        double potongan = (alpa * 150000) + (izin * 75000); 
+        double potongan = (alfa * 150000) + (izin * 75000); 
         
         double bonus = 0;
 
@@ -63,7 +69,7 @@ public class KaryawanTetap extends Karyawan {
             bonus += lembur * 100000; 
         }
 
-        if (alpa == 0 && izin == 0) {
+        if (alfa == 0 && izin == 0) {
             bonus += 500000; 
         }
 
