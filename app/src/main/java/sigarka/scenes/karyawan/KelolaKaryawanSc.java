@@ -31,10 +31,34 @@ public class KelolaKaryawanSc {
         Label lblTetap = new Label("Data Karyawan Tetap");
         Label lblKontrak = new Label("Data Karyawan Kontrak");
 
+        setupTabel();
+        muatData();
+
+        tabelTetap.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal != null) tabelKontrak.getSelectionModel().clearSelection();
+        }); 
+        tabelKontrak.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal != null) tabelTetap.getSelectionModel().clearSelection();
+        });
+
 
         Button btnTambah = new Button("Tambah Data Karyawan");
         Button btnHapus = new Button("Hapus Data Karyawan");
 
+          btnTambah.setOnAction(e -> TambahKaryawanSc.tampilkan(KelolaKaryawanSc::muatData));
+        btnHapus.setOnAction(e -> {
+            Karyawan kTerpilih = tabelTetap.getSelectionModel().getSelectedItem();
+            if (kTerpilih == null) kTerpilih = tabelKontrak.getSelectionModel().getSelectedItem();
+            
+            if (kTerpilih != null) {
+                if (HapusKaryawanSc.konfirmasiHapus(kTerpilih.getId(), kTerpilih.getNama())) {
+                    muatData();
+                }
+            } else {
+                Alert alert = new Alert(Alert.AlertType.WARNING, "Silakan pilih karyawan yang ingin dihapus pada tabel.");
+                alert.show();
+            }
+        });
         
         HBox layoutTabel = new HBox(20, 
             new VBox(10, lblTetap, tabelTetap), 
