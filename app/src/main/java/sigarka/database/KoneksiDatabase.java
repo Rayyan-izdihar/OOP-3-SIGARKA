@@ -3,6 +3,7 @@ package sigarka.database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class KoneksiDatabase {
 
@@ -25,4 +26,21 @@ public class KoneksiDatabase {
         }
     }
 
+    // ===== MEMBUAT TABEL DATA =====
+    private static void buatTabel(Connection conn) {
+        try (Statement stmt = conn.createStatement()) {
+            // Tabel Karyawan
+            stmt.execute("CREATE TABLE IF NOT EXISTS karyawan (" +
+                         "id TEXT PRIMARY KEY, " +
+                         "nama TEXT NOT NULL, " +
+                         "tipe TEXT NOT NULL, " +
+                         "divisi TEXT, " +
+                         "jabatan TEXT, " +
+                         "gaji_pokok REAL, " +
+                         "tarif_per_jam REAL" +
+                         ");");
+        } catch (SQLException e) {
+            System.err.println("Gagal membuat tabel: " + e.getMessage());
+        }
+    }
 }
