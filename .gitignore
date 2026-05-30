@@ -4,4 +4,18 @@
 # Ignore Gradle build output directory
 build
 
-*class
+# Ignore compiled class files
+*.class
+
+# Ignore SQLite Database files
+*.db
+sigarka.db
+
+# Ignore IDE specific files
+.idea/
+.vscode/
+*.iml
+
+# Ignore OS specific files
+.DS_Store
+Thumbs.db
