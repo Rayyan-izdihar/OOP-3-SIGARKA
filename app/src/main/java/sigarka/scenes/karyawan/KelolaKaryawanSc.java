@@ -4,7 +4,9 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -42,5 +44,35 @@ public class KelolaKaryawanSc {
 
         VBox root = new VBox(10, layoutTabel, layoutTombol, btnKembali);
         return new Scene(root, 1000, 600);
+    }
+
+    private static void setupTabel() {
+        tabelTetap.getColumns().clear();
+        tabelKontrak.getColumns().clear();
+
+        // Kolom untuk Tabel Tetap
+        TableColumn<Karyawan, String> colId = new TableColumn<>("ID");
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        TableColumn<Karyawan, String> colNama = new TableColumn<>("Nama");
+        colNama.setCellValueFactory(new PropertyValueFactory<>("nama"));
+        TableColumn<Karyawan, String> colDiv = new TableColumn<>("Divisi");
+        colDiv.setCellValueFactory(new PropertyValueFactory<>("divisi"));
+        TableColumn<Karyawan, String> colJab = new TableColumn<>("Jabatan");
+        colJab.setCellValueFactory(new PropertyValueFactory<>("jabatan"));
+        TableColumn<Karyawan, Double> colGajiPokok = new TableColumn<>("Gaji Pokok");
+        colGajiPokok.setCellValueFactory(new PropertyValueFactory<>("gajiPokok"));
+        
+        tabelTetap.getColumns().addAll(colId, colNama, colDiv, colJab, colGajiPokok);
+
+        // Kolom untuk Tabel Kontrak
+        tabelKontrak.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        TableColumn<Karyawan, String> colIdK = new TableColumn<>("ID Karyawan");
+        colIdK.setCellValueFactory(new PropertyValueFactory<>("id"));
+        TableColumn<Karyawan, String> colNamaK = new TableColumn<>("Nama");
+        colNamaK.setCellValueFactory(new PropertyValueFactory<>("nama"));
+        TableColumn<Karyawan, Double> colTarif = new TableColumn<>("Tarif");
+        colTarif.setCellValueFactory(new PropertyValueFactory<>("tarifPerJam"));
+
+        tabelKontrak.getColumns().addAll(colIdK, colNamaK, colTarif);
     }
 }
