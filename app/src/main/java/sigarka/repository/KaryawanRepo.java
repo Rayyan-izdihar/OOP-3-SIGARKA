@@ -105,4 +105,17 @@ public class KaryawanRepo {
         } catch (SQLException e) { e.printStackTrace(); }
         return 0;
     }
+
+     // ===== MENGAMBIL TARIF (K.KONTRAK) =====
+    public double getTarif(String id) {
+        String sql = "SELECT tarif_per_jam FROM karyawan WHERE id = ?";
+        try (Connection conn = KoneksiDatabase.sambung();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, id);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) return rs.getDouble("tarif_per_jam");
+            }
+        } catch (SQLException e) { e.printStackTrace(); }
+        return 0;
+    }
 }
