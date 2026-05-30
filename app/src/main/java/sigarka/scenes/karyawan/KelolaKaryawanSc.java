@@ -1,7 +1,13 @@
 package sigarka.scenes.karyawan;
 
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -74,5 +80,32 @@ public class KelolaKaryawanSc {
         colTarif.setCellValueFactory(new PropertyValueFactory<>("tarifPerJam"));
 
         tabelKontrak.getColumns().addAll(colIdK, colNamaK, colTarif);
+    }
+
+    public static void muatData() {
+        List<Karyawan> semua = repo.ambilSemua();
+        
+        List<Karyawan> tetap = semua.stream()
+            .filter(k -> "Karyawan Tetap".equals(k.getTipe()))
+            .sorted(Comparator.comparing((Karyawan k) -> {
+                String jab = ((sigarka.models.KaryawanTetap)k).getJabatan();
+                return "Manager".equals(jab) ? 0 : 1;
+            }).thenComparing(k -> ((sigarka.models.KaryawanTetap)k).getDivisi())
+              .thenComparing(k -> k.getNama()))
+            .collect(Collectors.toList());
+
+        List<Karyawan> kontrak = semua.stream()
+            .filter(k -> "Karyawan Kontrak".equals(k.getTipe()))
+            .sorted(Comparator.comparing(Karyawan::getNama))
+            .collect(Collectors.toList());
+
+        tabelTetap.setItems(FXCollections.observableArrayList(tetap));
+        tabelKontrak.setItems(FXCollections.observableArrayList(kontrak));
+        
+        tabelTetap.getSelectionModel().clearSelection();
+        tabelKontrak.getSelectionModel().clearSelection();
+        
+        tabelTetap.refresh();
+        tabelKontrak.refresh();
     }
 }
