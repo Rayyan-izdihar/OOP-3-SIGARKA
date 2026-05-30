@@ -98,4 +98,19 @@ public class TambahKaryawanSc {
         stage.setScene(new Scene(grid));
         stage.show();
     }
+
+    private static void updateInfoGaji(ComboBox<String> tipe, ComboBox<String> div, ComboBox<String> jab, Label lbl) {
+        if ("Karyawan Kontrak".equals(tipe.getValue())) {
+            lbl.setText("Tarif: 30.000 / jam");
+        } else if ("Karyawan Tetap".equals(tipe.getValue()) && div.getValue() != null && jab.getValue() != null) {
+            lbl.setText("Gaji Pokok: " + hitungGajiPokok(div.getValue(), jab.getValue()));
+        }
+    }
+
+    private static double hitungGajiPokok(String div, String jab) {
+        if ("Bisnis Global dan Pemasaran".equals(div)) return "Manager".equals(jab) ? 7000000 : 6000000;
+        if ("Produksi Kreatif".equals(div)) return "Manager".equals(jab) ? 6500000 : 5500000;
+        if ("Artist & Repertoire".equals(div)) return "Manager".equals(jab) ? 7500000 : 6500000;
+        return 0;
+    }
 }
