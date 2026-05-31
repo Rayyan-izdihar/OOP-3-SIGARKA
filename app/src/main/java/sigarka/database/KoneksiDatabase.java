@@ -16,6 +16,7 @@ public class KoneksiDatabase {
             // Memastikan driver SQLite terisi
             Class.forName("org.sqlite.JDBC");
             Connection conn = DriverManager.getConnection(URL);
+            buatTabel(conn);
             return conn;
         } catch (ClassNotFoundException e) {
             System.err.println("Driver SQLite tidak ditemukan: " + e.getMessage());
