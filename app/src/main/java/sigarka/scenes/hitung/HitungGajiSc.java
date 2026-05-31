@@ -5,14 +5,12 @@ import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import sigarka.models.Karyawan;
 import sigarka.models.KaryawanTetap;
 import sigarka.repository.GajiRepo;
@@ -20,7 +18,7 @@ import sigarka.repository.KaryawanRepo;
 
 public class HitungGajiSc {
 
-    public static Scene createScene(Stage stage) {
+    public static VBox getView() {
 
 
         VBox root = new VBox(15);
@@ -125,19 +123,15 @@ public class HitungGajiSc {
         });
 
 
-        Button btnKembali = new Button("Kembali");
-        btnKembali.setOnAction(e -> stage.setScene(sigarka.scenes.MenuSc.createScene(stage)));
-
         root.getChildren().addAll(
             new Label("Pilih Karyawan:"), 
             cbKaryawan, 
             new Label("Periode:"), 
             periode, 
             formContainer, 
-            btnHitung, 
-            btnKembali
+            btnHitung
         );
 
-        return new Scene(root, 400, 600);
+        return root;
     }
 }
