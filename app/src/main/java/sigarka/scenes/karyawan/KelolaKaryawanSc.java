@@ -69,10 +69,8 @@ public class KelolaKaryawanSc {
         HBox layoutTombol = new HBox(10, btnHapus, btnTambah);
         layoutTombol.setPadding(new Insets(10));
 
-        Button btnKembali = new Button("Kembali ke Menu");
-        btnKembali.setOnAction(e -> stage.setScene(sigarka.scenes.MenuSc.createScene(stage)));
 
-        VBox root = new VBox(10, layoutTabel, layoutTombol, btnKembali);
+        VBox root = new VBox(10, layoutTabel, layoutTombol);
         return new Scene(root, 1000, 600);
     }
 
