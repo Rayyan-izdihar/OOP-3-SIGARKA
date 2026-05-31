@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,7 +14,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import sigarka.models.Karyawan;
 import sigarka.repository.KaryawanRepo;
 
@@ -25,7 +23,7 @@ public class KelolaKaryawanSc {
     private static TableView<Karyawan> tabelKontrak = new TableView<>();
     private static KaryawanRepo repo = new KaryawanRepo();
 
-    public static Scene createScene(Stage stage) {
+    public static VBox getView() {
 
 
         Label lblTetap = new Label("Data Karyawan Tetap");
@@ -66,12 +64,12 @@ public class KelolaKaryawanSc {
         );
         layoutTabel.setPadding(new Insets(10));
 
-        HBox layoutTombol = new HBox(10, btnHapus, btnTambah);
+
+        VBox layoutTombol = new VBox(10, btnHapus, btnTambah);
         layoutTombol.setPadding(new Insets(10));
 
-
         VBox root = new VBox(10, layoutTabel, layoutTombol);
-        return new Scene(root, 1000, 600);
+        return root;
     }
 
     private static void setupTabel() {
