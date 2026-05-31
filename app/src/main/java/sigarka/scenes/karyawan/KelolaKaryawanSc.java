@@ -54,6 +54,16 @@ public class KelolaKaryawanSc {
                 }
             } else {
                 Alert alert = new Alert(Alert.AlertType.WARNING, "Silakan pilih karyawan yang ingin dihapus pada tabel.");
+                alert.setHeaderText(null);
+                alert.setGraphic(null);
+                
+                Button btnOkNode = (Button) alert.getDialogPane().lookupButton(javafx.scene.control.ButtonType.OK);
+                if (btnOkNode != null) {
+                    btnOkNode.setStyle("-fx-background-color: " + sigarka.View.AppStyle.LIGHTGREEN_COLOR + 
+                                       "; -fx-text-fill: " + sigarka.View.AppStyle.NOTSOBLACK_COLOR + 
+                                       "; -fx-cursor: hand;"); 
+                }
+
                 alert.show();
             }
         });
